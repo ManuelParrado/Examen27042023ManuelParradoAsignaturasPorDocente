@@ -328,6 +328,46 @@ public class VentanaPrincipal extends JFrame {
 		}
 		
 	}
+	
+	
+	/**
+	 * 
+	 */
+	private void agregarAsignaturas2() {
+		
+		
+//		CODIGO PARA AÑADIR A SELECCIONADOS LAS MATERIAS QUE DA EL PROFESOR SELECCIONADO 
+//		LO HAGO DE LA OTRA FORMA AL FINAL PORQUE NO SOY CAPAZ DE HACER QUE SALGAN LOS 
+//		NO SELECCIONAMOS SIN QUE SE REPITAN
+//		
+		
+		listModelNoSelec.removeAllElements();
+		listModelSelec.removeAllElements();
+		
+		Docente d = (Docente) jcbDocente.getSelectedItem();
+	
+		List<Asignaturaspordocente> asignaturasPD = ControllerAsignaturasPorDocente.findByIdDocente(d.getId());
+		
+		
+		List<Asignatura> asignaturaSelec = new ArrayList<Asignatura>();
+		
+		for (Asignaturaspordocente ad : asignaturasPD) {
+			asignaturaSelec.add(ad.getAsignatura());
+		}	
+		
+		if (asignaturaSelec != null) {
+			for (Asignatura a : asignaturaSelec) {
+				this.listModelSelec.add(indiceProximaAsignturaParaAgregar, a);
+				indiceProximaAsignturaParaAgregar++;
+			}	
+		}
+		
+		
+		
+//		CODIGO PARA AÑADIR A SELECCIONADOS LAS MATERIAS QUE DA EL PROFESOR SELECCIONADO
+		
+
+	}
 		
 	private void guardar() {
 		
@@ -394,39 +434,7 @@ public class VentanaPrincipal extends JFrame {
 
 	}
 	
-	/**
-	 * 
-	 */
-	private void agregarAsignaturas2() {
-		
-		
-//		CODIGO PARA AÑADIR A SELECCIONADOS LAS MATERIAS QUE DA EL PROFESOR SELECCIONADO 
-		
-		listModelNoSelec.removeAllElements();
-		listModelSelec.removeAllElements();
-		
-		Docente d = (Docente) jcbDocente.getSelectedItem();
-	
-		List<Asignaturaspordocente> asignaturasPD = ControllerAsignaturasPorDocente.findByIdDocente(d.getId());
-		
-		
-		List<Asignatura> asignaturaSelec = new ArrayList<Asignatura>();
-		
-		for (Asignaturaspordocente ad : asignaturasPD) {
-			asignaturaSelec.add(ad.getAsignatura());
-		}	
-		
-		if (asignaturaSelec != null) {
-			for (Asignatura a : asignaturaSelec) {
-				this.listModelSelec.add(indiceProximaAsignturaParaAgregar, a);
-				indiceProximaAsignturaParaAgregar++;
-			}	
-		}
-		
-//		CODIGO PARA AÑADIR A SELECCIONADOS LAS MATERIAS QUE DA EL PROFESOR SELECCIONADO
-		
 
-	}
 	
 	
 		
